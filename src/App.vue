@@ -1,60 +1,89 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <v-navigation-drawer app width="640" permanent>
+      <Navigation :navItem="navItem" />
+      <Profile :userItem="userItem" />
+    </v-navigation-drawer>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+    <v-app-bar app flat height="80" color="white">
+      <v-layout align-center class="mx-6">
+        <v-text-field flat solo-inverted filled prepend-inner-icon="mdi-magnify" rounded dense hide-details label="Search..."></v-text-field>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-btn icon color="success">
+          <v-badge bordered overlap dot bot color="error">
+            <v-icon>mdi-bell</v-icon>
+          </v-badge>
+        </v-btn>
+        <v-btn icon color="success"><v-icon>mdi-menu</v-icon></v-btn>
+      </v-layout>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <v-divider></v-divider>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
+import Navigation from '@/components/Navigation'
+import Profile from '@/components/Profile'
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-};
+  components: { Navigation, Profile },
+  data() {
+    return {
+      navItem: {
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png',
+        avatar:
+          'https://images.unsplash.com/photo-1578910985276-6cd1a7bc6dd4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=637&q=80',
+        photo:
+          'https://images.unsplash.com/photo-1578774296842-c45e472b3028?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=621&q=80',
+        items: [
+          { title: 'Dashboard', icon: 'mdi-view-dashboard' },
+          { title: 'Photos', icon: 'mdi-image' },
+          { title: 'About', icon: 'mdi-help-box' }
+        ]
+      },
+      userItem: {
+        photo:
+          'https://images.unsplash.com/photo-1578774296842-c45e472b3028?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=621&q=80',
+        userPhoto: [
+          'https://images.unsplash.com/photo-1514846326710-096e4a8035e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+          'https://images.unsplash.com/photo-1608277565122-b8443a713f41?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80',
+          'https://images.unsplash.com/photo-1578505574290-68739d054931?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+          'https://images.unsplash.com/photo-1591727884968-cc11135a19b3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=655&q=80',
+          'https://images.unsplash.com/photo-1580019598984-ae6ef6a9ff7a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=651&q=80'
+        ]
+      }
+    }
+  }
+}
 </script>
+<style lang="scss">
+.fa_user {
+  margin-top: 10px;
+  div {
+    display: inline-block;
+    width: 38px;
+    height: 56px;
+    margin-right: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.sub_text {
+  font-size: 13px;
+  color: grey;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-top: 10px;
+  letter-spacing: 0.4px;
+}
+</style>
