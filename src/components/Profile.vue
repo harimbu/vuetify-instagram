@@ -6,7 +6,7 @@
 
     <v-list class="mt-5">
       <v-list-item-content>
-        <v-img :src="userItem.user[0].urls.thumb" height="290" class="rounded-lg mb-5"></v-img>
+        <v-img :src="userItem.user" height="290" class="rounded-lg mb-5"></v-img>
         <v-list-item-title class="title align-center">
           <span>Karry Woodson</span>
           <v-btn icon color="red"><v-icon>mdi-check-decagram</v-icon></v-btn>

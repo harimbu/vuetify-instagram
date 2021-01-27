@@ -52,8 +52,8 @@ export default {
     chip: 'aaa'
   }),
   created() {
-    this.getFeatured('colorful')
-    this.getPhotos('landscape')
+    this.getFeatured('chair')
+    this.getPhotos('interior')
 
     this.$eventBus.$on('getPhoto', payload => {
       this.getFeatured(payload)

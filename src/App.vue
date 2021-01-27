@@ -86,7 +86,8 @@ export default {
         ]
       },
       userItem: {
-        user: [],
+        user:
+          'https://images.unsplash.com/photo-1578774296842-c45e472b3028?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=621&q=80',
         friends: []
       },
       photos: []
@@ -95,7 +96,6 @@ export default {
 
   created() {
     this.getFriends('woman')
-    this.getUser('woman face')
   },
 
   methods: {
@@ -105,17 +105,6 @@ export default {
         .then(result => {
           this.userItem.friends = result.response.results
           console.log(this.userItem.friends)
-        })
-        .catch(() => {
-          console.log('something went wrong!')
-        })
-    },
-
-    getUser(query) {
-      this.$unsplash.search
-        .getPhotos({ query: query, orientation: 'portrait', page: 1, perPage: 1 })
-        .then(result => {
-          this.userItem.user = result.response.results
         })
         .catch(() => {
           console.log('something went wrong!')
