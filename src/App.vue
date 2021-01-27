@@ -12,11 +12,20 @@
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-btn icon color="success">
-          <v-badge bordered overlap dot bot color="error">
+          <v-badge bordered overlap dot left color="error">
             <v-icon>mdi-bell</v-icon>
           </v-badge>
         </v-btn>
-        <v-btn icon color="success"><v-icon>mdi-menu</v-icon></v-btn>
+        <v-menu offset-y open-on-hover>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon color="success" v-bind="attrs" v-on="on"><v-icon>mdi-menu</v-icon></v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="(item, index) in navItem.items" :key="index">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </v-layout>
     </v-app-bar>
 
@@ -38,12 +47,29 @@ export default {
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png',
         avatar:
           'https://images.unsplash.com/photo-1578910985276-6cd1a7bc6dd4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=637&q=80',
-        photo:
-          'https://images.unsplash.com/photo-1578774296842-c45e472b3028?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=621&q=80',
         items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-          { title: 'Photos', icon: 'mdi-image' },
-          { title: 'About', icon: 'mdi-help-box' }
+          {
+            action: 'mdi-home',
+            title: 'Feed'
+          },
+          {
+            action: 'mdi-magnify',
+            active: true,
+            items: [{ title: 'Tranding Tags' }, { title: 'Top Posts' }, { title: 'People' }],
+            title: 'Explore'
+          },
+          {
+            action: 'mdi-bell',
+            title: 'Notification'
+          },
+          {
+            action: 'mdi-camera',
+            title: 'Direct'
+          },
+          {
+            action: 'mdi-chart-arc',
+            title: 'Stats'
+          }
         ]
       },
       userItem: {
