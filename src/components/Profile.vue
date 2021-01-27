@@ -6,7 +6,7 @@
 
     <v-list class="mt-5">
       <v-list-item-content>
-        <v-img :src="userItem.photo" height="290" class="rounded-lg mb-5"></v-img>
+        <v-img :src="userItem.user[0].urls.thumb" height="290" class="rounded-lg mb-5"></v-img>
         <v-list-item-title class="title align-center">
           <span>Karry Woodson</span>
           <v-btn icon color="red"><v-icon>mdi-check-decagram</v-icon></v-btn>
@@ -43,7 +43,7 @@
       <v-list-item-content>
         <v-list-item-title class="font-weight-bold">Favorite Profiles</v-list-item-title>
         <div class="fa_user">
-          <div v-for="(item, id) in userItem.userPhoto" :key="id"><v-img :src="item"></v-img></div>
+          <div v-for="(item, id) in userItem.friends" :key="id"><v-img :src="item.urls.thumb"></v-img></div>
         </div>
       </v-list-item-content>
     </v-list>
